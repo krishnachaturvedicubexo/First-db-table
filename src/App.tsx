@@ -3,7 +3,6 @@ import {database} from './db.tsx'
 import './App.css'
 import { DatabaseType } from './db.tsx'
 import { useEffect, useRef, useState } from 'react'
-// let database:DatabaseType[]=[...database]
 
 function App() {
   const [testDbSort,setTestDbSort]=useState<DatabaseType[]>([])
@@ -24,9 +23,9 @@ function App() {
 
   useEffect(()=>{
     setStartIndex((perPageLimit*page)-perPageLimit)
-    if(totalAgain<=perPageLimit&&page>=giveLastPage()){
+    if(totalAgain<=perPageLimit){
       setLastIndex(dbAfterDelete.length!==0?dbAfterDelete.length-1:database.length-1)
-    }else if(totalAgain>perPageLimit&&page>=giveLastPage()){
+    }else if(page>=giveLastPage()){
       setLastIndex(dbAfterDelete.length!==0?dbAfterDelete.length-1:database.length-1)
     }else{
       setLastIndex(perPageLimit*page-1)
@@ -48,8 +47,9 @@ function App() {
 
   }
   useEffect(()=>{
+    console.log("indexes---------------------> ",startIndex,lastIndex)
     createDatabasePerPage()
-  },[lastIndex])
+  },[startIndex,lastIndex])
 
   useEffect(()=>{
     if(totalAgain>perPageLimit){
