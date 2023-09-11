@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const imageUpload = () => {
+const ImageUpload = () => {
     const [selectedImages, setSelectedImages]=useState<File[]>([])
   
     const handleFileUpload=(e:React.ChangeEvent<HTMLInputElement>)=>{
@@ -15,11 +15,11 @@ const imageUpload = () => {
     }
    const handleImageUpload=(e:React.MouseEvent<HTMLButtonElement>)=>{
     console.log(e)
-    const formData=new FormData
+    const formData=new FormData()
     selectedImages.map((file,index)=>{
        formData.append(`image-${index+1}`, file )
     })
-    console.log(formData)
+    console.log("formData-",formData)
   }
   
   return (
@@ -48,4 +48,4 @@ const imageUpload = () => {
   )
 }
 
-export default imageUpload
+export default ImageUpload
