@@ -1,7 +1,7 @@
 const express=require('express')
-const uploadAllImages=require ("../controller/imageUploadController")
+const {uploadAllImages}=require ("../controller/imageUploadController")
 const imageUploadRoute=express.Router()
 
-imageUploadRoute.get('/', uploadAllImages)
+imageUploadRoute.post('/', uploadAllImages)
 
 module.exports= imageUploadRoute
